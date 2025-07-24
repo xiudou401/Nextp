@@ -1,42 +1,41 @@
-import React, { useEffect, useState } from 'react';
 import { getCurrentTime } from '../../lib';
 
+interface Props {
+  dt: string;
+  posts: Post[];
+}
 interface Post {
   id: number;
   title: string;
 }
 
-export default function Page() {
-  const [dt, setDt] = useState('');
-  const [data, setData] = useState<Post[]>([]);
-
-  const fetchData = () => {
-    fetch('https://dummyjson.com/posts')
-      .then((response) => {
-        return response.json();
-      })
-      .then((reply) => {
-        console.log(reply);
-        setData(reply.posts);
-        setDt(getCurrentTime());
-      });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+export default function Page({ dt, posts }: Props) {
   return (
     <main>
       <h1>posts</h1>
       <h4>{dt}</h4>
       <ul>
-        {data &&
-          data.map((item) => (
-            <li key={item.id}>
-              <h4>{item.title}</h4>
+        {posts &&
+          posts.map((post) => (
+            <li key={post.id}>
+              <h4>{post.title}</h4>
             </li>
           ))}
       </ul>
     </main>
   );
+}
+
+export async function getStaticProps() {
+  console.log('static props');
+  const dt = getCurrentTime();
+  const response = await fetch('https://dummyjson.com/posts');
+  const reply = await response.json();
+
+  return {
+    props: {
+      dt,
+      posts: reply.posts,
+    },
+  };
 }
