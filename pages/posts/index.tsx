@@ -15,6 +15,7 @@ export default function Page({ dt, posts }: Props) {
   return (
     <main>
       <h1>Posts</h1>
+      <h4>{dt}</h4>
       {posts.map((post) => (
         <ul key={post.id}>
           <li>{post.title}</li>
