@@ -1,3 +1,4 @@
+import RouterButton from '@/components/RouterButton';
 import { getCurrentTime } from '@/lib';
 import { GetStaticPropsContext } from 'next';
 
@@ -17,6 +18,7 @@ export default function Page({ id, dt, post }: Props) {
     <main>
       <h1>Post {id}</h1>
       <h4>{dt}</h4>
+      <RouterButton />
       <h4>{post.body}</h4>
     </main>
   );
@@ -44,6 +46,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 export async function getStaticPaths() {
   return {
     paths: [{ params: { postId: '1' } }, { params: { postId: '2' } }],
-    fallback: false,
+    fallback: true,
   };
 }

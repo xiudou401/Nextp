@@ -1,3 +1,4 @@
+import RouterButton from '@/components/RouterButton';
 import { getCurrentTime } from '@/lib';
 import React from 'react';
 
@@ -16,6 +17,7 @@ export default function Page({ dt, posts }: Props) {
     <main>
       <h1>Posts</h1>
       <h4>{dt}</h4>
+      <RouterButton />
       <ul>
         {posts.map((post: Post) => (
           <li key={post.id}>{post.title}</li>
