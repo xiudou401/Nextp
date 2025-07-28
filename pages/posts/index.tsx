@@ -1,5 +1,6 @@
 import RouterButton from '@/components/RouterButton';
 import { getCurrentTime } from '@/lib';
+import Link from 'next/link';
 import React from 'react';
 
 interface Props {
@@ -20,7 +21,9 @@ export default function Page({ dt, posts }: Props) {
       <RouterButton />
       <ul>
         {posts.map((post: Post) => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.id}>
+            <Link href={`/posts/${post.id}`}>{post.title}</Link>
+          </li>
         ))}
       </ul>
     </main>

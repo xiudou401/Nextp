@@ -28,7 +28,7 @@ export default function Page({ id, dt, post }: Props) {
 export async function getStaticProps(context: GetStaticPropsContext) {
   if (!context.params || !context.params.postId) {
     return {
-      notFound: true,
+      notFound: false,
     };
   }
   const id = context.params.postId;
