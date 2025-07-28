@@ -1,3 +1,4 @@
+
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -10,6 +11,7 @@ export default function Page() {
       <h1>
         Comment {pid} {cid}
       </h1>
+
     </main>
   );
 }

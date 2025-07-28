@@ -4,6 +4,7 @@ import { GetStaticPropsContext } from 'next';
 interface Props {
   id: number;
   dt: string;
+
   post: {
     id: number;
     body: string;
@@ -18,9 +19,13 @@ export default function Page({ id, dt, post }: Props) {
       <h1>Post {id}</h1>
       <h4>{dt}</h4>
       <p>{post.body}</p>
+
     </main>
   );
 }
+
+
+
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   if (!context.params || !context.params.postId) {
@@ -33,6 +38,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   const response = await fetch(`https://dummyjson.com/posts/${id}`);
   const reply = await response.json();
 
+
+
   return {
     props: {
       id,
@@ -42,9 +49,11 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   };
 }
 
+
 export async function getStaticPaths() {
   return {
     paths: [{ params: { postId: '1' } }, { params: { postId: '2' } }],
     fallback: false,
   };
 }
+
