@@ -9,6 +9,7 @@ export default function Page() {
 
       <h1>Help {Array.isArray(params) && params?.join?.(' ')}</h1>
 
+
     </main>
   );
 }

@@ -2,12 +2,10 @@
 import { getCurrentTime } from '@/lib';
 import React from 'react';
 
-
 interface Props {
   dt: string;
-  posts: Post[];
+  posts: [];
 }
-
 
 
 interface Post {
@@ -21,11 +19,11 @@ export default function Page({ dt, posts }: Props) {
 
       <h1>Posts</h1>
       <h4>{dt}</h4>
-      {posts.map((post) => (
-        <ul key={post.id}>
-          <li>{post.title}</li>
-        </ul>
-      ))}
+      <ul>
+        {posts.map((post: Post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
 
     </main>
   );

@@ -5,26 +5,26 @@ interface Props {
   id: number;
   dt: string;
 
-  post: {
-    id: number;
-    body: string;
-  };
+  post: Post;
+}
+
+interface Post {
+  id: number;
+  body: string;
 }
 
 export default function Page({ id, dt, post }: Props) {
-  //   const router = useRouter();
-  //   const id = router.query.postId;
+
   return (
     <main>
       <h1>Post {id}</h1>
       <h4>{dt}</h4>
-      <p>{post.body}</p>
+
+      <h4>{post.body}</h4>
 
     </main>
   );
 }
-
-
 
 
 export async function getStaticProps(context: GetStaticPropsContext) {
@@ -36,15 +36,15 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   const id = context.params.postId;
   const dt = getCurrentTime();
   const response = await fetch(`https://dummyjson.com/posts/${id}`);
-  const reply = await response.json();
 
-
+  const post = await response.json();
 
   return {
     props: {
       id,
       dt,
-      post: reply,
+
+      post,
     },
   };
 }

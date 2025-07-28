@@ -1,4 +1,5 @@
 
+
 export function getCurrentTime(): string {
   const now = new Date();
   const pad = (n: number) => n.toString().padStart(2, '0');

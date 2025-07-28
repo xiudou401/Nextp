@@ -4,12 +4,14 @@ import React from 'react';
 
 export default function Page() {
   const router = useRouter();
-  const cid = router.query.commentId;
+
   const pid = router.query.postId;
+  const cid = router.query.commentId;
+
   return (
     <main>
       <h1>
-        Comment {pid} {cid}
+        Comment - {pid} - {cid}
       </h1>
 
     </main>
