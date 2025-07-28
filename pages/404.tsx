@@ -3,7 +3,9 @@ import React from 'react';
 export default function Page() {
   return (
     <main>
-      <h1>Not Found</h1>
+
+      <h1>404 Page</h1>
+
     </main>
   );
 }
