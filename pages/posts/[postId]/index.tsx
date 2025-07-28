@@ -5,6 +5,7 @@ import { GetStaticPropsContext } from 'next';
 interface Props {
   id: number;
   dt: string;
+
   post: Post;
 }
 
@@ -33,11 +34,14 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   const id = context.params.postId;
   const dt = getCurrentTime();
   const response = await fetch(`https://dummyjson.com/posts/${id}`);
+
   const post = await response.json();
+
   return {
     props: {
       id,
       dt,
+
       post,
     },
   };
