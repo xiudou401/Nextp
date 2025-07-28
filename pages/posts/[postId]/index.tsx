@@ -4,38 +4,28 @@ import { GetStaticPropsContext } from 'next';
 interface Props {
   id: number;
   dt: string;
-  post: Post;
-}
 
-interface Post {
-  id: number;
-  title: string;
-  body: string;
+  post: {
+    id: number;
+    body: string;
+  };
 }
 
 export default function Page({ id, dt, post }: Props) {
+  //   const router = useRouter();
+  //   const id = router.query.postId;
   return (
     <main>
       <h1>Post {id}</h1>
-      {post ? (
-        <>
-          <h4>{dt}</h4>
-          <p>{post.title}</p>
-          <p>{post.body}</p>
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <h4>{dt}</h4>
+      <p>{post.body}</p>
+
     </main>
   );
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { postId: '1' } }, { params: { postId: '2' } }],
-    fallback: false,
-  };
-}
+
+
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   if (!context.params || !context.params.postId) {
@@ -47,6 +37,9 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   const dt = getCurrentTime();
   const response = await fetch(`https://dummyjson.com/posts/${id}`);
   const reply = await response.json();
+
+
+
   return {
     props: {
       id,
@@ -55,3 +48,12 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     },
   };
 }
+
+
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { postId: '1' } }, { params: { postId: '2' } }],
+    fallback: false,
+  };
+}
+

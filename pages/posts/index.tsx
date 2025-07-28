@@ -1,9 +1,15 @@
-import { getCurrentTime } from '../../lib';
+
+import { getCurrentTime } from '@/lib';
+import React from 'react';
+
 
 interface Props {
   dt: string;
   posts: Post[];
 }
+
+
+
 interface Post {
   id: number;
   title: string;
@@ -12,22 +18,21 @@ interface Post {
 export default function Page({ dt, posts }: Props) {
   return (
     <main>
-      <h1>posts</h1>
+
+      <h1>Posts</h1>
       <h4>{dt}</h4>
-      <ul>
-        {posts &&
-          posts.map((post) => (
-            <li key={post.id}>
-              <h4>{post.title}</h4>
-            </li>
-          ))}
-      </ul>
+      {posts.map((post) => (
+        <ul key={post.id}>
+          <li>{post.title}</li>
+        </ul>
+      ))}
+
     </main>
   );
 }
 
 export async function getStaticProps() {
-  console.log('static props');
+
   const dt = getCurrentTime();
   const response = await fetch('https://dummyjson.com/posts');
   const reply = await response.json();
