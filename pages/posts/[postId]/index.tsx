@@ -50,12 +50,12 @@ export async function getStaticPaths() {
   const response = await fetch('https://dummyjson.com/posts');
   const reply = await response.json();
   return {
-    // paths: [{ params: { postId: '1' } }, { params: { postId: '2' } }],
-    paths: reply.posts.map((post: Post) => ({
-      params: {
-        postId: post.id.toString(),
-      },
-    })),
-    fallback: false,
+    paths: [{ params: { postId: '1' } }, { params: { postId: '2' } }],
+    // paths: reply.posts.map((post: Post) => ({
+    //   params: {
+    //     postId: post.id.toString(),
+    //   },
+    // })),
+    fallback: 'blocking',
   };
 }
